@@ -60,7 +60,7 @@ var upload = multer({
     secretAccessKey: process.env.AWS_SECRET_KEY,
     accessKeyId: process.env.AWS_ACCESS_KEY,
     // the region of your bucket
-    region: 'Ireland',
+    region: 'eu-west-1',
     // IMPORTANT: set the mime type to that of the file
     contentType: function(req, file, next) {
       next(null, file.mimetype);
@@ -78,10 +78,20 @@ var upload = multer({
   })
 });
 
+var uploader = upload.single('file');
+
 // This will upload a single file.
-app.post('/upload/single', upload.single('file'), function(req, res) {
-  res.status(200).json({ filename: req.file.key });
+app.post('/api/upload/single', function(req, res) {
+  uploader(req, res, function(err) {
+    if(err) return res.status(500).json({ message: err });
+    res.status(200).json({ filename: req.file.key });
+  });
+
 });
+
+// app.get('/upload/single', upload.single('file'), function(req, res) {
+//   res.status(200).json({ filename: req.file.key });
+// });
 
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
