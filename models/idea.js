@@ -8,9 +8,12 @@ var ideaSchema = new mongoose.Schema({
     required: true
   },
   image: {
+    type: String
+  },
+  description: {
     type: String,
     required: true
-  },
+  }
   user: {
     type: mongoose.Schema.ObjectId, 
     ref: 'User'

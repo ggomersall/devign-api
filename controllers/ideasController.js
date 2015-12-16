@@ -33,6 +33,7 @@ function ideaUpdate(req, res) {
 
     if(req.body.name) idea.name = req.body.name;
     if(req.body.image) idea.image = req.body.image;
+    if(req.body.text) idea.text = req.body.text;
     if(req.body.user) idea.user = req.body.user;
 
     idea.save(function(err, idea){
