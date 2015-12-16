@@ -82,9 +82,21 @@ var uploader = upload.single('file');
 
 // This will upload a single file.
 app.post('/api/upload/single', function(req, res) {
+
   uploader(req, res, function(err) {
     if(err) return res.status(500).json({ message: err });
-    res.status(200).json({ filename: req.file.key });
+    var idea = new Idea({
+      name: req.body.name,
+      image: req.file.key,
+      description: req.body.description, 
+      user: req.user._id
+    });
+    
+    idea.save(function(err){
+      if(err) return res.status(201).json({ message: "Could not create idea " + (err) });
+      res.status(201).json({ idea: idea});
+    });
+    
   });
 
 });

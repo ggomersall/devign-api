@@ -16,6 +16,20 @@ function ideaShow(req, res){
 
 function ideaCreate(req, res) {
   var idea = new Idea({
+    // uploader(req, res, function(err) {
+    //   if(err) return res.status(500).json({ message: err });
+    //   var idea = new Idea({
+    //     name: req.body.name,
+    //     image: req.file.key,
+    //     description: req.body.description, 
+    //     user: req.user._id
+    //   });
+    //   idea.save(function(err){
+    //     if(err) return res.render('error', { message: "Could not create idea " + (err) });
+    //     res.status(201).json({ idea: idea});
+    //   });
+      
+    // });
     name: req.body.name,
     image: req.body.image,
     description: req.body.description, 
