@@ -18,6 +18,7 @@ function ideaCreate(req, res) {
   var idea = new Idea({
     name: req.body.name,
     image: req.body.image,
+    description: req.body.description, 
     user: req.user.id
   });
   idea.save(function(err){
@@ -33,7 +34,7 @@ function ideaUpdate(req, res) {
 
     if(req.body.name) idea.name = req.body.name;
     if(req.body.image) idea.image = req.body.image;
-    if(req.body.text) idea.text = req.body.text;
+    if(req.body.description) idea.description = req.body.description;
     if(req.body.user) idea.user = req.body.user;
 
     idea.save(function(err, idea){
