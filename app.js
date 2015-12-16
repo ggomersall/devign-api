@@ -9,6 +9,7 @@ var cookieParser   = require("cookie-parser");
 var methodOverride = require("method-override");
 var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
+var multer         = require('multer');
 var s3             = require('multer-s3');
 var uuid           = require('uuid');
 var app            = express();
