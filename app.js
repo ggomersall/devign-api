@@ -87,7 +87,7 @@ app.post('/api/upload/single', function(req, res) {
     if(err) return res.status(500).json({ message: err });
     var idea = new Idea({
       name: req.body.name,
-      image: req.file.key,
+      image: "https://s3-eu-west-1.amazonaws.com/devign-app/" + req.file.key,
       description: req.body.description, 
       user: req.user._id
     });
