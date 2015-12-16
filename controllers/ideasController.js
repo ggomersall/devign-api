@@ -8,7 +8,9 @@ function ideasIndex(req, res){
 };
 
 function ideaShow(req, res){
-  Idea.findById(req.params.id, function(err, idea){
+  // the .populate function adds the user model to each idea record, so you can
+  // display more user data rather than just an id
+  Idea.findById(req.params.id).populate('user').exec(function(err, idea){
     if(err) return res.status(404).json({ message: "Oooops, something went wrong. We couldn't find that idea" });
     res.status(200).json({ idea: idea});
   });

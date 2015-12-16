@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Idea = require('../models/idea');
 
 function usersIndex(req, res) {
   User.find(function(err, users) {
@@ -10,7 +11,11 @@ function usersIndex(req, res) {
 function userShow(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (err) return res.status(404).json({ message: "Ooops,  something went wrong 4." });
-    res.status(200).json({ user: user });
+
+    // get the user's ideas
+    Idea.find({ user: user._id }, function(err, ideas) {
+      res.status(200).json({ user: user, ideas: ideas });
+    });
   });
 };
 
