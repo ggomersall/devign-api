@@ -85,17 +85,6 @@ app.post('/api/upload/single', function(req, res) {
 
   uploader(req, res, function(err) {
     if(err) return res.status(500).json({ message: err });
-    // var idea = new Idea({
-    //   name: req.body.name,
-    //   image: "https://s3-eu-west-1.amazonaws.com/devign-app/" + req.file.key,
-    //   description: req.body.description, 
-    //   user: req.user._id
-    // });
-    
-    // idea.save(function(err){
-    //   if(err) return res.status(201).json({ message: "Could not create idea " + (err) });
-    //   res.status(201).json({ idea: idea});
-    // });
 
     res.status(201).json({ filename: "https://s3-eu-west-1.amazonaws.com/devign-app/" + req.file.key });
     
@@ -103,9 +92,6 @@ app.post('/api/upload/single', function(req, res) {
 
 });
 
-// app.get('/upload/single', upload.single('file'), function(req, res) {
-//   res.status(200).json({ filename: req.file.key });
-// });
 
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
