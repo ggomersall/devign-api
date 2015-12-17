@@ -21,7 +21,7 @@ function ideaCreate(req, res) {
     name: req.body.name,
     image: req.body.image,
     description: req.body.description, 
-    user: req.user.id
+    user: req.user._id
   });
   idea.save(function(err){
     if(err) return res.render('error', { message: "Could not create idea " + (err) });

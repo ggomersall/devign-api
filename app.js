@@ -24,7 +24,7 @@ require('./config/passport')(passport);
 
 // connecting the DB
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/devigner-app');
-
+mongoose.set('debug', true)
 // requiring passport
 
 app.use(methodOverride(function(req, res){
