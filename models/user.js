@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var random = require('mongoose-random');
 var bcrypt = require('bcrypt-nodejs');
 
 
@@ -31,6 +32,6 @@ userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-Schema.plugin(random, { path: 'r' });
+userSchema.plugin(random, { path: 'r' });
 
 module.exports = mongoose.model("User", userSchema);
