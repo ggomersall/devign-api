@@ -28,5 +28,7 @@ router.route('/ideas/:id')
   .patch(ideasController.ideaUpdate)
   .delete(ideasController.ideaDelete);
 
+router.route('/users/random')
+  .get(usersController.userRandom);
 
 module.exports = router;

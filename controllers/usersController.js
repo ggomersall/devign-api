@@ -45,14 +45,23 @@ function userDelete(req, res) {
   });
 };
 
-function userRandom(req, res) {
+function userRandom(res) {
   User.findRandom().limit(4).exec(function (err, users) {
     if(err) return res.status(404).json({ message: "Sorry random users could not be found." });
     res.status(200).json({ users: users});
     console.log(users);
+    // console.log(res);
   });
 }
 
+
+// User.findRandom().limit(4).exec(function (err, users) {
+//   console.log(users);
+// });
+
+User.syncRandom(function (err, result) {
+  console.log(result.updated);
+});
 
 
 
