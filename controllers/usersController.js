@@ -45,11 +45,22 @@ function userDelete(req, res) {
   });
 };
 
+function userRandom(req, res) {
+  User.findRandom().limit(4).exec(function (err, users) {
+    if(err) return res.status(404).json({ message: "Sorry random users could not be found." });
+    res.status(200).json({ users: users});
+    console.log(users);
+  });
+}
+
+
+
 
 
 module.exports = {
   usersIndex: usersIndex,
   userShow: userShow,
   userUpdate: userUpdate,
-  userDelete: userDelete
+  userDelete: userDelete,
+  userRandom: userRandom
 }
